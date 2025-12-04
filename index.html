@@ -14,9 +14,6 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -43,7 +40,7 @@
           0% { transform: translateY(0); }
           100% { transform: translateY(-50%); }
         }
-        .animate-scroll { animation: scrollUp 30s linear infinite; }
+        .animate-scroll { animation: scrollUp 45s linear infinite; }
 
         @keyframes noise {
             0%, 100% { background-position: 0 0; }
@@ -67,7 +64,103 @@
 
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-        const { Train, Clock, AlertTriangle, TrendingDown, Play, Pause, RotateCcw, Activity, Users, Home, ChevronLeft, ArrowRight, Zap, DollarSign, Info } = lucide;
+
+        // --- INTERNAL ICON COMPONENTS (Replaces External Dependency) ---
+        const IconBase = ({ children, size = 24, className = "" }) => (
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width={size} 
+                height={size} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className={className}
+            >
+                {children}
+            </svg>
+        );
+
+        const Train = (props) => (
+            <IconBase {...props}>
+                <rect width="16" height="16" x="4" y="3" rx="2" />
+                <path d="M4 11h16" />
+                <path d="M12 3v8" />
+                <path d="m8 19-2 3" />
+                <path d="m18 22-2-3" />
+                <path d="M8 15h0" />
+                <path d="M16 15h0" />
+            </IconBase>
+        );
+        const Clock = (props) => (
+            <IconBase {...props}>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+            </IconBase>
+        );
+        const AlertTriangle = (props) => (
+            <IconBase {...props}>
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                <path d="M12 9v4" />
+                <path d="M12 17h.01" />
+            </IconBase>
+        );
+        const TrendingDown = (props) => (
+            <IconBase {...props}>
+                <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />
+                <polyline points="16 17 22 17 22 11" />
+            </IconBase>
+        );
+        const Play = (props) => (
+            <IconBase {...props}>
+                <polygon points="6 3 20 12 6 21 6 3" />
+            </IconBase>
+        );
+        const Pause = (props) => (
+            <IconBase {...props}>
+                <rect x="14" y="4" width="4" height="16" rx="1" />
+                <rect x="6" y="4" width="4" height="16" rx="1" />
+            </IconBase>
+        );
+        const RotateCcw = (props) => (
+            <IconBase {...props}>
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+            </IconBase>
+        );
+        const Activity = (props) => (
+            <IconBase {...props}>
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </IconBase>
+        );
+        const Users = (props) => (
+            <IconBase {...props}>
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </IconBase>
+        );
+        const Home = (props) => (
+            <IconBase {...props}>
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </IconBase>
+        );
+        const ChevronLeft = (props) => (
+            <IconBase {...props}>
+                <path d="m15 18-6-6 6-6" />
+            </IconBase>
+        );
+        const Zap = (props) => (
+            <IconBase {...props}>
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </IconBase>
+        );
+
+        // --- MAIN APP COMPONENT ---
 
         const DisruptionsWrapped = () => {
           const [currentSlide, setCurrentSlide] = useState(0);
@@ -575,4 +668,3 @@
     </script>
 </body>
 </html>
-
